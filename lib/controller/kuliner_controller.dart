@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:exercise2/model/kontak.dart';
 import 'package:exercise2/model/kuliner.dart';
 import 'package:exercise2/service/kuliner_service.dart';
 
@@ -46,15 +45,30 @@ class KulinerController {
     }
   }
 
-  Future<List<Kontak>> getPeople() async {
+  // Future<List<Kontak>> getPeople() async {
+  //   try {
+  //     List<dynamic> peopleData = await kontakService.fetchPeople();
+  //     List<Kontak> people =
+  //         peopleData.map((json) => Kontak.fromMap(json)).toList();
+  //     return people;
+  //   } catch (e) {
+  //     print(e);
+  //     throw Exception('Failed to get people');
+  //   }
+  // }
+  Future<List<Kuliner>> getKuliner() async {
     try {
-      List<dynamic> peopleData = await kontakService.fetchPeople();
-      List<Kontak> people =
-          peopleData.map((json) => Kontak.fromMap(json)).toList();
-      return people;
+      List<dynamic> kulinerData = await kulinerService.fetchPeople();
+      if (kulinerData != null) {
+        List<Kuliner> people =
+            kulinerData.map((json) => Kuliner.fromMap(json)).toList();
+        return people;
+      } else {
+        return [];
+      }
     } catch (e) {
-      print(e);
-      throw Exception('Failed to get people');
+      print('Error: $e');
+      throw Exception('Failed to get people: $e');
     }
   }
 }

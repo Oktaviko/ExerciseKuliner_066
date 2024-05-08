@@ -28,20 +28,40 @@ class KulinerService {
   }
 
   //Untuk mengambil data dari API
+  // Future<List<dynamic>> fetchPeople() async {
+  //   var response = await http.get(
+  //       getUri(
+  //         endPoint,
+  //       ),
+  //       headers: {
+  //         "Accept": "application/json",
+  //       });
+
+  //   if (response.statusCode == 200) {
+  //     final Map<String, dynamic> decodedResponse = json.decode(response.body);
+  //     return decodedResponse['people'];
+  //   } else {
+  //     throw Exception('Failed to load people: ${response.reasonPhrase}');
+  //   }
+  // }
+
   Future<List<dynamic>> fetchPeople() async {
-    var response = await http.get(
-        getUri(
-          endPoint,
-        ),
+    try {
+      var response = await http.get(
+        getUri(endPoint),
         headers: {
           "Accept": "application/json",
-        });
-
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> decodedResponse = json.decode(response.body);
-      return decodedResponse['people'];
-    } else {
-      throw Exception('Failed to load people: ${response.reasonPhrase}');
+        },
+      );
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> decodedResponse = json.decode(response.body);
+        return decodedResponse['kuliner'];
+      } else {
+        throw Exception('Failed to load kuliner: ${response.reasonPhrase}');
+      }
+    } catch (e) {
+      print('Error: $e');
+      return []; // Return an empty list instead of null
     }
   }
 }

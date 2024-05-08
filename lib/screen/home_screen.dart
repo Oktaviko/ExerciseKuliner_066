@@ -1,6 +1,6 @@
 
 import 'package:exercise2/controller/kuliner_controller.dart';
-import 'package:exercise2/model/kontak.dart';
+import 'package:exercise2/model/kuliner.dart';
 import 'package:exercise2/screen/form_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _controller.getPeople();
+    _controller.getKuliner();
   }
 
   @override
@@ -26,8 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text("Daftar Orang"),
       ),
-      body: FutureBuilder<List<Kontak>>(
-        future: _controller.getPeople(),
+      body: FutureBuilder<List<Kuliner>>(
+        future: _controller.getKuliner(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -41,10 +41,10 @@ class _HomeScreenState extends State<HomeScreen> {
             return ListView.builder(
               itemCount: snapshot.data?.length ?? 0,
               itemBuilder: (context, index) {
-                Kontak person = snapshot.data![index];
+                Kuliner person = snapshot.data![index];
                 return ListTile(
-                  title: Text(person.nama),
-                  subtitle: Text(person.email),
+                  title: Text(person.namatempatkuliner),
+                  subtitle: Text(person.kisaranharga),
                   leading: CircleAvatar(
                     backgroundImage: NetworkImage(person.foto),
                   ),
