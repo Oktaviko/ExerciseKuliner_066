@@ -1,6 +1,5 @@
 import 'dart:io';
 
-
 import 'package:exercise2/controller/kuliner_controller.dart';
 import 'package:exercise2/model/kuliner.dart';
 import 'package:exercise2/screen/home_screen.dart';
@@ -59,7 +58,8 @@ class _FormKulinerState extends State<FormKuliner> {
                 margin: const EdgeInsets.all(10),
                 child: TextFormField(
                   decoration: const InputDecoration(
-                      labelText: "Nama Tempat Kuliner", hintText: "Masukkan Tempat Kuliner"),
+                      labelText: "Nama Tempat Kuliner",
+                      hintText: "Masukkan Tempat Kuliner"),
                   controller: _namatempatController,
                 ),
               ),
@@ -67,7 +67,8 @@ class _FormKulinerState extends State<FormKuliner> {
                 margin: EdgeInsets.all(10),
                 child: TextFormField(
                   decoration: InputDecoration(
-                      labelText: "Kisaran Harga", hintText: "Masukkan Kisaran Harga"),
+                      labelText: "Kisaran Harga",
+                      hintText: "Masukkan Kisaran Harga"),
                   controller: _hargaController,
                 ),
               ),
@@ -124,8 +125,17 @@ class _FormKulinerState extends State<FormKuliner> {
                 margin: EdgeInsets.all(10),
                 child: TextFormField(
                   decoration: InputDecoration(
-                      labelText: "No Telepon Kuliner", hintText: "Masukkan No Telepon Kuliner"),
+                      labelText: "No Telepon Kuliner",
+                      hintText: "Masukkan No Telepon Kuliner"),
                   controller: _noTeleponController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Masukkan nomor telepon dengan benar";
+                    } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                      return "Hanya boleh memasukkan angka";
+                    }
+                    return null;
+                  },
                 ),
               ),
               _image == null
