@@ -64,9 +64,7 @@ class _FormKulinerState extends State<FormKuliner> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Input tidak boleh kosong";
-                    } else if (!RegExp(r'^[a-zA-Z0-9]+$').hasMatch(value)) {
-                      return "Hanya boleh memasukkan huruf (a-z, A-Z) dan angka (0-9)";
-                    }
+                    } 
                     return null;
                   },
                 ),
@@ -78,6 +76,12 @@ class _FormKulinerState extends State<FormKuliner> {
                       labelText: "Kisaran Harga",
                       hintText: "Masukkan Kisaran Harga"),
                   controller: _hargaController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Input tidak boleh kosong";
+                    } 
+                    return null;
+                  },
                 ),
               ),
               Container(
