@@ -45,30 +45,30 @@ class KulinerController {
     }
   }
 
-  // Future<List<Kontak>> getPeople() async {
-  //   try {
-  //     List<dynamic> peopleData = await kontakService.fetchPeople();
-  //     List<Kontak> people =
-  //         peopleData.map((json) => Kontak.fromMap(json)).toList();
-  //     return people;
-  //   } catch (e) {
-  //     print(e);
-  //     throw Exception('Failed to get people');
-  //   }
-  // }
   Future<List<Kuliner>> getKuliner() async {
     try {
-      List<dynamic> kulinerData = await kulinerService.fetchPeople();
-      if (kulinerData != null) {
-        List<Kuliner> people =
-            kulinerData.map((json) => Kuliner.fromMap(json)).toList();
-        return people;
-      } else {
-        return [];
-      }
+      List<dynamic> peopleData = await kulinerService.fetchPeople();
+      List<Kuliner> people =
+          peopleData.map((json) => Kuliner.fromMap(json)).toList();
+      return people;
     } catch (e) {
-      print('Error: $e');
-      throw Exception('Failed to get people: $e');
+      print(e);
+      throw Exception('Failed to get tempat');
     }
   }
+  // Future<List<Kuliner>> getKuliner() async {
+  //   try {
+  //     List<dynamic> kulinerData = await kulinerService.fetchPeople();
+  //     if (kulinerData != null) {
+  //       List<Kuliner> people =
+  //           kulinerData.map((json) => Kuliner.fromMap(json)).toList();
+  //       return people;
+  //     } else {
+  //       return [];
+  //     }
+  //   } catch (e) {
+  //     print('Error: $e');
+  //     throw Exception('Failed to get people: $e');
+  //   }
+  // }
 }

@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class KulinerService {
-  final String baseUrl = 'https://paml.tatiumy.com/api/';
-  final String endPoint = 'people';
+  final String baseUrl = 'http://127.0.0.1:8000/api/';
+  final String endPoint = 'tempat-kuliner';
 
   Uri getUri(String path) {
     return Uri.parse("$baseUrl$path");
@@ -28,40 +28,40 @@ class KulinerService {
   }
 
   //Untuk mengambil data dari API
-  // Future<List<dynamic>> fetchPeople() async {
-  //   var response = await http.get(
-  //       getUri(
-  //         endPoint,
-  //       ),
-  //       headers: {
-  //         "Accept": "application/json",
-  //       });
-
-  //   if (response.statusCode == 200) {
-  //     final Map<String, dynamic> decodedResponse = json.decode(response.body);
-  //     return decodedResponse['people'];
-  //   } else {
-  //     throw Exception('Failed to load people: ${response.reasonPhrase}');
-  //   }
-  // }
-
   Future<List<dynamic>> fetchPeople() async {
-    try {
-      var response = await http.get(
-        getUri(endPoint),
+    var response = await http.get(
+        getUri(
+          endPoint,
+        ),
         headers: {
           "Accept": "application/json",
-        },
-      );
-      if (response.statusCode == 200) {
-        final Map<String, dynamic> decodedResponse = json.decode(response.body);
-        return decodedResponse['kuliner'];
-      } else {
-        throw Exception('Failed to load kuliner: ${response.reasonPhrase}');
-      }
-    } catch (e) {
-      print('Error: $e');
-      return []; // Return an empty list instead of null
+        });
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> decodedResponse = json.decode(response.body);
+      return decodedResponse['tempat-kuliner'];
+    } else {
+      throw Exception('Failed to load Tempat Kuliner: ${response.reasonPhrase}');
     }
   }
+
+  // Future<List<dynamic>> fetchPeople() async {
+  //   try {
+  //     var response = await http.get(
+  //       getUri(endPoint),
+  //       headers: {
+  //         "Accept": "application/json",
+  //       },
+  //     );
+  //     if (response.statusCode == 200) {
+  //       final Map<String, dynamic> decodedResponse = json.decode(response.body);
+  //       return decodedResponse['kuliner'];
+  //     } else {
+  //       throw Exception('Failed to load kuliner: ${response.reasonPhrase}');
+  //     }
+  //   } catch (e) {
+  //     print('Error: $e');
+  //     return []; // Return an empty list instead of null
+  //   }
+  // }
 }
