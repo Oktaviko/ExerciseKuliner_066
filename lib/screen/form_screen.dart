@@ -162,9 +162,11 @@ class _FormKulinerState extends State<FormKuliner> {
                   },
                 ),
               ),
+              const SizedBox(height: 20),
               _image == null
                   ? const Text("Tidak ada data yang dipilih")
                   : Image.file(_image!),
+                  const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
                   getImage();
