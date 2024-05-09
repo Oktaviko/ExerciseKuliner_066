@@ -45,9 +45,9 @@ class _FormKulinerState extends State<FormKuliner> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Data Tempat Kuliner Recommended"),
+        title: const Text("Data Kuliner Recommended"),
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 200, 210, 214),
+        backgroundColor: const Color.fromARGB(255, 200, 210, 214),
       ),
       body: Form(
         key: _formkey,
@@ -58,28 +58,32 @@ class _FormKulinerState extends State<FormKuliner> {
                 margin: const EdgeInsets.all(10),
                 child: TextFormField(
                   decoration: const InputDecoration(
-                      labelText: "Nama Tempat Kuliner",
-                      hintText: "Masukkan Tempat Kuliner"),
+                    labelText: "Nama Tempat Kuliner",
+                    hintText: "Masukkan Tempat Kuliner",
+                    border: OutlineInputBorder(),
+                  ),
                   controller: _namatempatController,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Input tidak boleh kosong";
-                    } 
+                    }
                     return null;
                   },
                 ),
               ),
               Container(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: TextFormField(
-                  decoration: InputDecoration(
-                      labelText: "Kisaran Harga",
-                      hintText: "Masukkan Kisaran Harga"),
+                  decoration: const InputDecoration(
+                    labelText: "Kisaran Harga",
+                    hintText: "Masukkan Kisaran Harga",
+                    border: OutlineInputBorder(),
+                  ),
                   controller: _hargaController,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Input tidak boleh kosong";
-                    } 
+                    }
                     return null;
                   },
                 ),
@@ -90,11 +94,17 @@ class _FormKulinerState extends State<FormKuliner> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("Alamat"),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text("Alamat"),
+                    ),
                     _alamat == null
                         ? const SizedBox(
                             width: double.infinity,
-                            child: Text('Alamat kosong'))
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text('Alamat kosong'),
+                            ))
                         : Text('$_alamat'),
                     _alamat == null
                         ? TextButton(
@@ -134,11 +144,13 @@ class _FormKulinerState extends State<FormKuliner> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: TextFormField(
-                  decoration: InputDecoration(
-                      labelText: "No Telepon Kuliner",
-                      hintText: "Masukkan No Telepon Kuliner"),
+                  decoration: const InputDecoration(
+                    labelText: "No Telepon Kuliner",
+                    hintText: "Masukkan No Telepon Kuliner",
+                    border: OutlineInputBorder(),
+                  ),
                   controller: _noTeleponController,
                   validator: (value) {
                     if (value!.isEmpty) {
